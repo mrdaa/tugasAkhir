@@ -46,19 +46,31 @@ void loop() {
 
   String id = "P1471984882";
 
+// Kirim data Temperatur 
   float t = dht.readTemperature();
 	char temp[10];
 	String tempAsString;
   	// perform conversion
-  	dtostrf(t,1,2,temp);
+  dtostrf(t,1,2,temp);
   	// create string object
 	tempAsString = String(temp);
-  String inputString;
-  inputString = t;
-  String asd = "{\"_id\":\"" + id + "\",\"_val\":\"" + tempAsString + "\"}";
-  socket.emit("temp", asd.c_str());
+  String inputTemp;
+  inputTemp = t;
+  String dataTemp = "{\"_id\":\"" + id + "\",\"_val\":\"" + tempAsString + "\"}";
+  socket.emit("temp", dataTemp.c_str());
   
+  // Kirim data Temperatur 
+  float h = dht.readHumidity();
+	char hum[10];
+	String humAsString;
+  	// perform conversion
+  dtostrf(t,1,2,hum);
+  	// create string object
+	humAsString = String(hum);
+  String inputHum;
+  inputHum = h;
+  String dataTemp = "{\"_id\":\"" + id + "\",\"_val\":\"" + humAsString + "\"}";
+  socket.emit("hum", dataTemp.c_str());
 
-  // socket.emit("hum" , dataHum);
   delay(1000);
 }
