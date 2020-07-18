@@ -15,7 +15,7 @@
 
 // Setting SocketIo Connect
 // char SocketServer[] = "192.168.43.154";
-char SocketServer[] = "192.168.47.147";
+char SocketServer[] = "192.168.43.108";
 int port = 4000;
 
 
@@ -64,13 +64,13 @@ void loop() {
 	char hum[10];
 	String humAsString;
   	// perform conversion
-  dtostrf(t,1,2,hum);
+  dtostrf(h,1,2,hum);
   	// create string object
 	humAsString = String(hum);
   String inputHum;
   inputHum = h;
-  String dataTemp = "{\"_id\":\"" + id + "\",\"_val\":\"" + humAsString + "\"}";
-  socket.emit("hum", dataTemp.c_str());
+  String dataHum = "{\"_id\":\"" + id + "\",\"_val\":\"" + humAsString + "\"}";
+  socket.emit("hum", dataHum.c_str());
 
   delay(1000);
 }
